@@ -80,14 +80,14 @@ const Home = () => {
             <Text fontStyle="italic" pb="20px">Fitur ‘buat soal’ bagus sekali, saved me so much time.</Text>
           </Box>
         
-          <Box bg="#white" height="250px" rounded="lg" boxShadow="md" textAlign="center" height="300px" >
+          <Box bg="#white" rounded="lg" boxShadow="md" textAlign="center" height="300px" >
             <Img src="bu ningsih.png"  pt="20px" ml="30%"></Img>
             <Text fontSize ="16" fontWeight="bold" mt="10px">Melati Putri </Text>
             <Text >Guru SMA Tiara Bangsa</Text>
             <Text fontStyle="italic" pb="20px">Asgur.id membantu saya menghemat waktu :D Saya puas sekali</Text>
           </Box>
 
-          <Box bg="#white" height="250px" rounded="lg" boxShadow="md" textAlign="center" height="300px" >
+          <Box bg="#white" rounded="lg" boxShadow="md" textAlign="center" height="300px" >
             <Img src="bu wawa.png"  pt="20px" ml="30%"></Img>
             <Text fontSize ="16" fontWeight="bold" mt="10px">Windah K. </Text>
             <Text >Guru SD Citra Kasih</Text>
