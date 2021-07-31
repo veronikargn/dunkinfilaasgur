@@ -1,71 +1,176 @@
-/*
+import {
+  Box,
+  Img,
+  Text,
+  SimpleGrid,
+  Button,
+  Input,
+  Select,Formik
+} from "@chakra-ui/react";
+import {
+  FormControl,
+  FormLabel,
+  FormErrorMessage,
+  FormHelperText,
+} from "@chakra-ui/react";
+import React, { useCallback } from "react";
+import { useDropzone } from "react-dropzone";
+import styled from "styled-components";
+import { useState } from "react";
 
-import * as React from 'react'
-// reactstrap components
-import { ListGroup, ListGroupItem, Row, Col, Button,dropzone } from "reactstrap";
-// core components
-
-
-function Example() {
-  React.useEffect(async () => {
-    // we make a dynamic import for the Dropzone, as this component is not made to work on SSR
-    const Dropzone = (await import("dropzone")).default;
-    Dropzone.autoDiscover = false;
-    // this variable is to delete the previous image from the dropzone state
-    // it is just to make the HTML DOM a bit better, and keep it light
-    let currentSingleFile = undefined;
-    // single dropzone file - accepts only images
-    new Dropzone(document.getElementById("dropzone-single"), {
-      url: "/",
-      thumbnailWidth: null,
-      thumbnailHeight: null,
-      previewsContainer: document.getElementsByClassName(
-        "dz-preview-single"
-      )[0],
-      previewTemplate: document.getElementsByClassName("dz-preview-single")[0]
-        .innerHTML,
-      maxFiles: 1,
-      acceptedFiles: "image/*",
-      init: function () {
-        this.on("addedfile", function (file) {
-          if (currentSingleFile) {
-            this.removeFile(currentSingleFile);
-          }
-          currentSingleFile = file;
-        });
-      },
-    });
-    document.getElementsByClassName("dz-preview-single")[0].innerHTML = "";
-  }, []);
+const func = () => {
   return (
-    <>
-      <div className="dropzone dropzone-single mb-3" id="dropzone-single">
-        <div className="fallback">
-          <div className="custom-file">
-            <input
-              className="custom-file-input"
-              id="projectCoverUploads"
-              type="file"
-            />
-            <label className="custom-file-label" htmlFor="projectCoverUploads">
-              Choose file
-            </label>
-          </div>
-        </div>
-        <div className="dz-preview dz-preview-single">
-          <div className="dz-preview-cover">
-            <img alt="..." className="dz-preview-img" data-dz-thumbnail="" />
-          </div>
-        </div>
+    <div >
+       you&apos;re free
       </div>
-    </>
+  )}
+
+const getColor = (props) => {
+  if (props.isDragAccept) {
+    return "#00e676";
+  }
+  if (props.isDragReject) {
+    return "#ff1744";
+  }
+  if (props.isDragActive) {
+    return "#2196f3";
+  }
+  return "#eeeeee";
+};
+
+const Container = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border-width: 2px;
+  border-radius: 2px;
+  border-color: ${(props) => getColor(props)};
+  border-style: dashed;
+  background-color: #fafafa;
+  color: #bdbdbd;
+  outline: none;
+  transition: border 0.24s ease-in-out;
+`;
+
+function StyledDropzone(props) {
+  const {
+    getRootProps,
+    getInputProps,
+    isDragActive,
+    isDragAccept,
+    isDragReject,
+  } = useDropzone({ accept: "image/*" });
+
+  return (
+    <div className="container">
+
+      <Container
+        {...getRootProps({ isDragActive, isDragAccept, isDragReject })}
+      >
+        <input {...getInputProps()} />
+        <p>Drag dan drop file atau klik untuk mengunggah</p>
+
+      </Container>
+    </div>
   );
 }
-*/
-const Comaterial = () => {
-  return(
-    <p> bantuan materi coming soon</p>
-  )
-}
 
+const Comaterial = () => {
+  const [firstName, setFirstName,setMatpel] = useState("");
+  return (
+    <>
+    <Box>
+      <Box d="flex" flexDir="row">
+        <Box bgImage="bg2.png" bgSize="cover" w="400px" h="698px">
+          <Box ml="76px">
+            <Text pt="100px" color="white" fontSize="36" fontWeight="Bold">
+              Bantuan Materi
+            </Text>
+            <Text mt="60px" fontSize="20" color="white">
+              Semua Materi
+            </Text>
+            <Text mt="40px" fontSize="20" color="white">
+              Kelas
+            </Text>
+            <Text mt="40px" fontSize="20" color="white">
+              Mata Pelajaran
+            </Text>
+            <Text mt="40px" fontSize="20" color="white">
+              Upload Materi
+            </Text>
+          </Box>
+        </Box>
+
+        <Box ml="20%" mt="50px" boxShadow="xl" p="6" rounded="md" bg="white">
+          <FormControl id="Judul materi" isRequired>
+            <FormLabel>Judul Materi</FormLabel>
+            <Input
+              placeholder="Judul Materi"
+              onChange={(e) => setFirstName(e.target.value)}
+            />
+          </FormControl>
+
+          <Text mt="20px" mb="20px">Unggah File</Text>
+          <StyledDropzone mt="20px"/>
+
+
+          <Box classname="Dropdown" mt="20px">
+            <FormControl id="Kelas">
+              <FormLabel>Kelas</FormLabel>
+              <Select placeholder="Select Kelas">
+                <option>Kelas 1</option>
+                <option>Kelas 2</option>
+                <option>Kelas 3</option>
+                <option>Kelas 4</option>
+                <option>Kelas 5</option>
+                <option>Kelas 6</option>
+                <option>Kelas 7</option>
+                <option>Kelas 8</option>
+                <option>Kelas 9</option>
+                <option>Kelas 10</option>
+                <option>Kelas 11</option>
+                <option>Kelas 12</option>
+              </Select>
+            </FormControl>
+
+            <FormControl id="Matpel">
+              <FormLabel mt="20px">Kelas</FormLabel>
+              <Select placeholder="Mata Pelajaran">
+                <option>Bahasa Indonesia</option>
+                <option>Bahasa Inggris</option>
+                <option>Matematika</option>
+                <option>Biologi</option>
+                <option>Ekonomi</option>
+                <option>Fisika</option>
+                <option>Kimia</option>
+                <option>Geografi</option>
+                <option>Sosiologi</option>
+                <option>PPKn</option>
+                <option>Saintek</option>
+                <option>Sejarah</option>
+                <option>Soshum</option>
+                <option>Lainnya</option>
+              </Select>
+            </FormControl>
+
+            <FormControl id="jenismateri" mt="20px">
+              <FormLabel>Jenis Materi</FormLabel>
+              <Select placeholder="Jenis Materi">
+                <option>Slide</option>
+                <option>Rangkuman</option>
+                <option>Latihan Soal</option>
+                <option>Video</option>
+              </Select>
+            </FormControl>
+
+            <Button mt="20px">Upload Materi</Button>
+
+          </Box>
+        </Box>
+      </Box>
+    </Box>
+    </>
+  )};
 export default Comaterial;
