@@ -105,21 +105,19 @@ const Home = () => {
             </Box>
           </Box>
           <Box ml="20%" mt="50px" boxShadow="xl" p="6" rounded="md" bg="white">
-            <FormControl id="Judul materi" isRequired>
-              <FormLabel>Judul Materi</FormLabel>
+
+
+            <FormControl name="upload" method="POST" data-netlify="true" isRequired>
+              <FormLabel id="Judul materi">Judul Materi</FormLabel>
               <Input
                 placeholder="Judul Materi"
                 onChange={(e) => setFirstName(e.target.value)}
               />
-            </FormControl>
-           
-            <Text mt="20px" mb="20px">Unggah File</Text>
-            <StyledDropzone mt="20px"/>
-
-
-          <Box classname="Dropdown" mt="20px">
-              <FormControl id="Kelas">
-                <FormLabel>Kelas</FormLabel>
+         
+        
+            <Text>Unggah File</Text>
+            <StyledDropzone />
+            <FormLabel id="Kelas">Kelas</FormLabel>
                 <Select placeholder="Select Kelas">
                   <option>Kelas 1</option>
                   <option>Kelas 2</option>
@@ -134,10 +132,8 @@ const Home = () => {
                   <option>Kelas 11</option>
                   <option>Kelas 12</option>
                 </Select>
-              </FormControl>
 
-              <FormControl id="Matpel">
-                <FormLabel mt="20px">Kelas</FormLabel>
+                <FormLabel id="Matpel">Matpel</FormLabel>
                 <Select placeholder="Mata Pelajaran">
                   <option>Bahasa Indonesia</option>
                   <option>Bahasa Inggris</option>
@@ -154,21 +150,17 @@ const Home = () => {
                   <option>Soshum</option>
                   <option>Lainnya</option>
                 </Select>
-              </FormControl>
 
-              <FormControl id="jenismateri" mt="20px">
-                <FormLabel>Jenis Materi</FormLabel>
+                <FormLabel id="jenismateri">Jenis Materi</FormLabel>
                 <Select placeholder="Jenis Materi">
                   <option>Slide</option>
                   <option>Rangkuman</option>
                   <option>Latihan Soal</option>
                   <option>Video</option>
                 </Select>
-              </FormControl>
-
-              <Button mt="20px">Upload Materi</Button>
-
-        </Box>
+                <Button type="submit">Submit</Button>
+              </FormControl>  
+        
           </Box>
         </Box>
     
