@@ -1,7 +1,8 @@
-import { Box,Img ,Text,SimpleGrid,Button} from "@chakra-ui/react"
+import { Box,Img ,Text,SimpleGrid,Button,Tooltip} from "@chakra-ui/react"
+import { useRouter } from "next/router"
 
 const Home = () => {
-
+  const router = useRouter()
   return (
     <>
       <Box bgImage="background.png" bgSize="cover" w="full" h="2300px" >
@@ -30,13 +31,13 @@ const Home = () => {
             rounded="lg"
             color="gray.400"
           >
-            <Box boxShadow="xl" p="6" rounded="md" bg="white">
+            <Box boxShadow="xl" p="6" rounded="md" bg="white" onClick={() => router.push('/cariasisten')}>
              Cari Asisten
             </Box>
-            <Box boxShadow="xl" p="6" rounded="md" bg="white">
+            <Box boxShadow="xl" p="6" rounded="md" bg="white" onClick={() => router.push('/buatsoal')}>
               Pembuat Soal
             </Box>
-            <Box boxShadow="xl" p="6" rounded="md" bg="white">
+            <Box boxShadow="xl" p="6" rounded="md" bg="white" onClick={() => router.push('/comaterial')}>
               Bantuan Materi
             </Box>
             <Box boxShadow="xl" p="6" rounded="md" bg="white">
@@ -57,7 +58,9 @@ const Home = () => {
             <Text mt="20px" color="white" fontSize="24" fontWeight="Bold">Gabung Sebagai</Text>
             <Text fontSize="24" fontWeight="Bold" >Member Premium</Text>
             <Text mt="20px">Hanya Rp 10.000 / bulan atau Rp 180.000 / tahun</Text>
+            <Tooltip hasArrow label="Klik tombol untuk mendaftar" bg="#1B7AD0">
             <Button mt="20px">Daftar Sekarang</Button>
+            </Tooltip>
         </Box>
 
       </Box>

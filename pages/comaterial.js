@@ -13,7 +13,14 @@ import {
   FormErrorMessage,
   FormHelperText,
 } from "@chakra-ui/react";
-import React, { useCallback } from "react";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  AccordionIcon,
+} from "@chakra-ui/react"
+import React, { useCallback, usestate } from "react";
 import { useDropzone } from "react-dropzone";
 import styled from "styled-components";
 import { useState } from "react";
@@ -78,7 +85,12 @@ function StyledDropzone(props) {
 }
 
 const Comaterial = () => {
+  const [kelas, setKelas] = useState(1)
+  const [pelajaran, setPelajaran] = useState(1)
+  const [jenis, setJenis] = useState(1)
+  const [load,setLoad] = useState(1)
   const [firstName, setFirstName,setMatpel] = useState("");
+
   return (
     <>
     <Box>
@@ -88,37 +100,160 @@ const Comaterial = () => {
             <Text pt="100px" color="white" fontSize="36" fontWeight="Bold">
               Bantuan Materi
             </Text>
-            <Text mt="60px" fontSize="20" color="white">
-              Semua Materi
-            </Text>
-            <Text mt="40px" fontSize="20" color="white">
-              Kelas
-            </Text>
-            <Text mt="40px" fontSize="20" color="white">
-              Mata Pelajaran
-            </Text>
-            <Text mt="40px" fontSize="20" color="white">
-              Upload Materi
-            </Text>
+            
+            <Box  mt="50px" d="flex" flexDir="column" w="300px" h= "300px"justifyContent="space-between"  fontSize="18px">
+            <Text cursor="pointer" onClick = {() => setLoad(1)}>Semua Materi</Text>
+            <Accordion allowToggle mt>
+
+              <AccordionItem>
+                <h2>
+                  <AccordionButton>
+                    <Box flex="1" textAlign="left">
+                      Pilih Kelas
+                    </Box>
+                    <AccordionIcon />
+                  </AccordionButton>
+                </h2>
+                <AccordionPanel pb={4}>
+                <Text cursor="pointer" onClick = {() => setKelas(1)}>Kelas 1</Text>
+                </AccordionPanel>
+                <AccordionPanel pb={4}>
+                <Text cursor="pointer" onClick = {() => setKelas(2)}>Kelas 2</Text>
+                </AccordionPanel>
+                <AccordionPanel pb={4}>
+                <Text cursor="pointer" onClick = {() => setKelas(3)}>Kelas 3</Text>
+                </AccordionPanel>
+                <AccordionPanel pb={4}>
+                <Text cursor="pointer" onClick = {() => setKelas(4)}>Kelas 4</Text>
+                </AccordionPanel>
+                <AccordionPanel pb={4}>
+                <Text cursor="pointer" onClick = {() => setKelas(5)}>Kelas 5</Text>
+                </AccordionPanel>
+                <AccordionPanel pb={4}>
+                <Text cursor="pointer" onClick = {() => setKelas(6)}>Kelas 6</Text>
+                </AccordionPanel>
+                <AccordionPanel pb={4}>
+                <Text cursor="pointer" onClick = {() => setKelas(7)}>Kelas 7</Text>
+                </AccordionPanel>
+                <AccordionPanel pb={4}>
+                <Text cursor="pointer" onClick = {() => setKelas(8)}>Kelas 8</Text>
+                </AccordionPanel>
+                <AccordionPanel pb={4}>
+                <Text cursor="pointer" onClick = {() => setKelas(9)}>Kelas 9</Text>
+                </AccordionPanel>
+                <AccordionPanel pb={4}>
+                <Text cursor="pointer" onClick = {() => setKelas(10)}>Kelas 10</Text>
+                </AccordionPanel>
+                <AccordionPanel pb={4}>
+                <Text cursor="pointer" onClick = {() => setKelas(11)}>Kelas 11</Text>
+                </AccordionPanel>
+                <AccordionPanel pb={4}>
+                <Text cursor="pointer" onClick = {() => setKelas(12)}>Kelas 12</Text>
+                </AccordionPanel>
+                <AccordionPanel pb={4}>
+                <Text cursor="pointer" onClick = {() => setKelas(13)}>Lainnya</Text>
+                </AccordionPanel>
+              </AccordionItem>
+
+              <AccordionItem>
+                <h2>
+                  <AccordionButton>
+                    <Box flex="1" textAlign="left">
+                      Pilih Mata Pelajaran
+                    </Box>
+                    <AccordionIcon />
+                  </AccordionButton>
+                </h2>
+                <AccordionPanel pb={4}>
+                <Text cursor="pointer" onClick = {() => setPelajaran(1)}>Bahasa Indonesia</Text>
+                </AccordionPanel>
+                <AccordionPanel pb={4}>
+                <Text cursor="pointer" onClick = {() => setPelajaran(2)}>Bahasa Inggris</Text>
+                </AccordionPanel>
+                <AccordionPanel pb={4}>
+                <Text cursor="pointer" onClick = {() => setPelajaran(3)}>Matematika</Text>
+                </AccordionPanel>
+                <AccordionPanel pb={4}>
+                <Text cursor="pointer" onClick = {() => setPelajaran(4)}>Biologi</Text>
+                </AccordionPanel>
+                <AccordionPanel pb={4}>
+                <Text cursor="pointer" onClick = {() => setPelajaran(5)}>Ekonomi</Text>
+                </AccordionPanel>
+                <AccordionPanel pb={4}>
+                <Text cursor="pointer" onClick = {() => setPelajaran(6)}>Fisika</Text>
+                </AccordionPanel>
+                <AccordionPanel pb={4}>
+                <Text cursor="pointer" onClick = {() => setPelajaran(7)}>Kimia</Text>
+                </AccordionPanel>
+                <AccordionPanel pb={4}>
+                <Text cursor="pointer" onClick = {() => setPelajaran(8)}>Geografi</Text>
+                </AccordionPanel>
+                <AccordionPanel pb={4}>
+                <Text cursor="pointer" onClick = {() => setPelajaran(9)}>Sosiologi</Text>
+                </AccordionPanel>
+                <AccordionPanel pb={4}>
+                <Text cursor="pointer" onClick = {() => setPelajaran(10)}>PPKn</Text>
+                </AccordionPanel>
+                <AccordionPanel pb={4}>
+                <Text cursor="pointer" onClick = {() => setPelajaran(11)}>Saintek</Text>
+                </AccordionPanel>
+                <AccordionPanel pb={4}>
+                <Text cursor="pointer" onClick = {() => setPelajaran(12)}>Sejarah</Text>
+                </AccordionPanel>
+                <AccordionPanel pb={4}>
+                <Text cursor="pointer" onClick = {() => setPelajaran(13)}>Soshum</Text>
+                </AccordionPanel>
+                <AccordionPanel pb={4}>
+                <Text cursor="pointer" onClick = {() => setPelajaran(14)}>Lainnya</Text>
+                </AccordionPanel>
+
+              </AccordionItem>
+
+              <AccordionItem>
+                <h2>
+                  <AccordionButton>
+                    <Box flex="1" textAlign="left">
+                      Pilih Jenis materi
+                    </Box>
+                    <AccordionIcon />
+                  </AccordionButton>
+                </h2>
+                <AccordionPanel pb={4}>
+                <Text cursor="pointer" onClick = {() => setJenis(1)}>Slide</Text>
+                </AccordionPanel>
+                <AccordionPanel pb={4}>
+                <Text cursor="pointer" onClick = {() => setJenis(2)}>Rangkuman</Text>
+                </AccordionPanel>
+                <AccordionPanel pb={4}>
+                <Text cursor="pointer" onClick = {() => setJenis(3)}>Latihan Soal</Text>
+                </AccordionPanel>
+                <AccordionPanel pb={4}>
+                <Text cursor="pointer" onClick = {() => setJenis(4)}>Video</Text>
+                </AccordionPanel>
+                <AccordionPanel pb={4}>
+                <Text cursor="pointer" onClick = {() => setJenis(5)}>Lainnya</Text>
+                </AccordionPanel>
+              </AccordionItem>
+            </Accordion>
+            <Text cursor="pointer" onClick = {() => setLoad(0)}>Upload Materi</Text>
+            {/* 0 */}
+          </Box>
+
           </Box>
         </Box>
-
         <Box ml="20%" mt="50px" boxShadow="xl" p="6" rounded="md" bg="white">
-          <FormControl id="Judul materi" isRequired>
-            <FormLabel>Judul Materi</FormLabel>
+
+        {load === 0 && 
+        <FormControl name="upload" method="POST" data-netlify="true" isRequired>
+              <FormLabel id="Judul materi">Judul Materi</FormLabel>
             <Input
               placeholder="Judul Materi"
               onChange={(e) => setFirstName(e.target.value)}
             />
-          </FormControl>
-
-          <Text mt="20px" mb="20px">Unggah File</Text>
-          <StyledDropzone mt="20px"/>
-
-
-          <Box classname="Dropdown" mt="20px">
-            <FormControl id="Kelas">
-              <FormLabel>Kelas</FormLabel>
+        
+            <Text>Unggah File</Text>
+            <StyledDropzone />
+            <FormLabel id="Kelas">Kelas</FormLabel>
               <Select placeholder="Select Kelas">
                 <option>Kelas 1</option>
                 <option>Kelas 2</option>
@@ -132,11 +267,10 @@ const Comaterial = () => {
                 <option>Kelas 10</option>
                 <option>Kelas 11</option>
                 <option>Kelas 12</option>
+                <option>Lainnya</option>
               </Select>
-            </FormControl>
 
-            <FormControl id="Matpel">
-              <FormLabel mt="20px">Kelas</FormLabel>
+              <FormLabel id="Matpel">Matpel</FormLabel>
               <Select placeholder="Mata Pelajaran">
                 <option>Bahasa Indonesia</option>
                 <option>Bahasa Inggris</option>
@@ -153,21 +287,18 @@ const Comaterial = () => {
                 <option>Soshum</option>
                 <option>Lainnya</option>
               </Select>
-            </FormControl>
 
-            <FormControl id="jenismateri" mt="20px">
-              <FormLabel>Jenis Materi</FormLabel>
+              <FormLabel id="jenismateri">Jenis Materi</FormLabel>
               <Select placeholder="Jenis Materi">
                 <option>Slide</option>
                 <option>Rangkuman</option>
                 <option>Latihan Soal</option>
                 <option>Video</option>
+                <option>Lainnya</option>
               </Select>
-            </FormControl>
-
-            <Button mt="20px">Upload Materi</Button>
-
-          </Box>
+              <Button type="submit">Submit</Button>
+              </FormControl>  
+        }
         </Box>
       </Box>
     </Box>
