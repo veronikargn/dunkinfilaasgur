@@ -1,3 +1,5 @@
+/**import {upload} from "../lib/s3Client"**/
+
 import {
   Box,
   Img,
@@ -5,7 +7,7 @@ import {
   SimpleGrid,
   Button,
   Input,
-  Select,Formik
+  Select,
 } from "@chakra-ui/react";
 import Navbar from "../components/Navbar";
 import {
@@ -70,7 +72,7 @@ function StyledDropzone(props) {
       <Container
         {...getRootProps({ isDragActive, isDragAccept, isDragReject })}
       >
-        <input {...getInputProps()} />
+        <input {...getInputProps()} onChange={(e) => console.log(e)} />
         <p>Drag dan drop file atau klik untuk mengunggah</p>
      
       </Container>
@@ -78,7 +80,7 @@ function StyledDropzone(props) {
   );
 }
 
-const Home = () => {
+const Comaterial = () => {
   const [firstName, setFirstName,setMatpel] = useState("");
   return (
     <>
@@ -160,6 +162,7 @@ const Home = () => {
                 </Select>
                 <Button type="submit">Submit</Button>
               </FormControl>  
+              <Button onClick={()=>upload()}>Coba aja</Button>
         
           </Box>
         </Box>
@@ -170,4 +173,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Comaterial;
