@@ -134,7 +134,7 @@ const Home = () => {
             <Text fontWeight="Bold" color="#0E7ADD" >Bagaimana mencari materi sesuai kelas atau pelajaran ? </Text>
             <Text  pb="40px">Bisa menggunakan filter yang disediakan pada sidebar di halaman Bantuan Materi</Text>
 
-            <Text fontStyle="bold" fontSize="14px" pb="20px">Untuk kontak lebih lanjut, silahkan hubungi kami melalui E-mail kami : asgur@gmail.com </Text>
+            <Text fontStyle="bold" fontSize="14px" pb="20px">Untuk kontak lebih lanjut, silahkan hubungi kami melalui E-mail kami : service@asgurid.co.id </Text>
           </Box>
       </Box>
       </Box>

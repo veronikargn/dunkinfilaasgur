@@ -5,7 +5,7 @@ import {
   SimpleGrid,
   Button,
   Input,
-  Select,Formik
+  Select,Formik, layout
 } from "@chakra-ui/react";
 import {
   FormControl,
@@ -31,6 +31,7 @@ import {
   PopoverArrow,
   PopoverCloseButton,
 } from "@chakra-ui/react"
+import Layout from "../components/Layout";
 import React, { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import styled from "styled-components";
@@ -268,8 +269,12 @@ const Comaterial = () => {
 
           </Box>
         </Box>
+        {load === 1 &&
+      <Box ml="25%" mt="100px" h = "400px" boxShadow="xl" p="6" rounded="md" bg="#068EE2" >
+          <Layout />
+          </Box>}
         {load === 0 && 
-        <Box d="flex" flexDir="column" ml="20%" mt="50px" h = "600px" boxShadow="xl" p="6" rounded="md" bg="white" justifyContent="space-between">
+        <Box d="flex" flexDir="column" ml="20%" mt="50px" h = "650px" boxShadow="xl" p="6" rounded="md" bg="white" justifyContent="space-between">
 
 
         <FormControl name="upload" method="POST" data-netlify="true" isRequired>
@@ -344,6 +349,8 @@ const Comaterial = () => {
         }
       </Box>
     </Box>
+
+ 
     </>
   )};
 export default Comaterial;
