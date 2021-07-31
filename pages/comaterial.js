@@ -13,6 +13,7 @@ import {
   FormErrorMessage,
   FormHelperText,
 } from "@chakra-ui/react";
+import axios from "axios";
 import {
   Accordion,
   AccordionItem,
@@ -20,10 +21,19 @@ import {
   AccordionPanel,
   AccordionIcon,
 } from "@chakra-ui/react"
-import React, { useCallback, usestate } from "react";
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverHeader,
+  PopoverBody,
+  PopoverFooter,
+  PopoverArrow,
+  PopoverCloseButton,
+} from "@chakra-ui/react"
+import React, { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import styled from "styled-components";
-import { useState } from "react";
 
 const func = () => {
   return (
@@ -76,7 +86,7 @@ function StyledDropzone(props) {
       <Container
         {...getRootProps({ isDragActive, isDragAccept, isDragReject })}
       >
-        <input {...getInputProps()} />
+        <input {...getInputProps()} onChange={(e) => console.log(e)}/>
         <p>Drag dan drop file atau klik untuk mengunggah</p>
 
       </Container>
@@ -85,26 +95,43 @@ function StyledDropzone(props) {
 }
 
 const Comaterial = () => {
+  const [file, setFile] = useState(null);
   const [kelas, setKelas] = useState(1)
   const [pelajaran, setPelajaran] = useState(1)
   const [jenis, setJenis] = useState(1)
   const [load,setLoad] = useState(1)
   const [firstName, setFirstName,setMatpel] = useState("");
 
+  const uploadData = () => {
+    let formData = new FormData();
+    formData.append("file", file);
+    axios
+      .post("http://103.31.39.236:5000", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((res) => {
+        console.log(res.data); // url untuk access filenya di s3
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
   return (
     <>
     <Box>
       <Box d="flex" flexDir="row">
-        <Box bgImage="bg2.png" bgSize="cover" w="400px" h="698px">
+        <Box bgImage="bg2.png" bgSize="cover" w="400px" h="1200px">
           <Box ml="76px">
             <Text pt="100px" color="white" fontSize="36" fontWeight="Bold">
               Bantuan Materi
             </Text>
             
             <Box  mt="50px" d="flex" flexDir="column" w="300px" h= "300px"justifyContent="space-between"  fontSize="18px">
-            <Text cursor="pointer" onClick = {() => setLoad(1)}>Semua Materi</Text>
-            <Accordion allowToggle mt>
-
+            <Text cursor="pointer" color="white" onClick = {() => setLoad(1)}>Semua Materi</Text>
+            <Accordion allowToggle color="white">
               <AccordionItem>
                 <h2>
                   <AccordionButton>
@@ -235,26 +262,30 @@ const Comaterial = () => {
                 </AccordionPanel>
               </AccordionItem>
             </Accordion>
-            <Text cursor="pointer" onClick = {() => setLoad(0)}>Upload Materi</Text>
-            {/* 0 */}
+            <Text cursor="pointer" color = "white" onClick = {() => setLoad(0)}>Unggah Materi</Text>
+            
           </Box>
 
           </Box>
         </Box>
-        <Box ml="20%" mt="50px" boxShadow="xl" p="6" rounded="md" bg="white">
-
         {load === 0 && 
+        <Box d="flex" flexDir="column" ml="20%" mt="50px" h = "600px" boxShadow="xl" p="6" rounded="md" bg="white" justifyContent="space-between">
+
+
         <FormControl name="upload" method="POST" data-netlify="true" isRequired>
-              <FormLabel id="Judul materi">Judul Materi</FormLabel>
+              <FormLabel pt="20px" id="Judul materi">Judul Materi</FormLabel>
             <Input
               placeholder="Judul Materi"
               onChange={(e) => setFirstName(e.target.value)}
             />
         
-            <Text>Unggah File</Text>
-            <StyledDropzone />
-            <FormLabel id="Kelas">Kelas</FormLabel>
-              <Select placeholder="Select Kelas">
+            <Text pt ="20px" mb="20px">Unggah File</Text>
+            <Input
+                  type="file"
+                  onChange={(e) => setFile(e.target.files[0])}
+                mb="20px"/>
+            <FormLabel pt = "20 px" id="Kelas">Kelas</FormLabel>
+              <Select mb="20px" placeholder="Select Kelas">
                 <option>Kelas 1</option>
                 <option>Kelas 2</option>
                 <option>Kelas 3</option>
@@ -270,8 +301,8 @@ const Comaterial = () => {
                 <option>Lainnya</option>
               </Select>
 
-              <FormLabel id="Matpel">Matpel</FormLabel>
-              <Select placeholder="Mata Pelajaran">
+              <FormLabel pt = "20 px" id="Matpel">Matpel</FormLabel>
+              <Select mb ="20px" placeholder="Mata Pelajaran">
                 <option>Bahasa Indonesia</option>
                 <option>Bahasa Inggris</option>
                 <option>Matematika</option>
@@ -288,7 +319,7 @@ const Comaterial = () => {
                 <option>Lainnya</option>
               </Select>
 
-              <FormLabel id="jenismateri">Jenis Materi</FormLabel>
+              <FormLabel mt = "20 px"  id="jenismateri">Jenis Materi</FormLabel>
               <Select placeholder="Jenis Materi">
                 <option>Slide</option>
                 <option>Rangkuman</option>
@@ -296,10 +327,21 @@ const Comaterial = () => {
                 <option>Video</option>
                 <option>Lainnya</option>
               </Select>
-              <Button type="submit">Submit</Button>
+              <Popover>
+                <PopoverTrigger>
+              <Button mt="40px" onClick={() => uploadData()}>Unggah Materi</Button>
+              </PopoverTrigger>
+  <PopoverContent>
+    <PopoverArrow />
+    <PopoverCloseButton />
+    <PopoverHeader>Berhasil terunggah!</PopoverHeader>
+    <PopoverBody>Terima kasih atas kontribusinya!</PopoverBody>
+  </PopoverContent>
+</Popover>
               </FormControl>  
-        }
+        
         </Box>
+        }
       </Box>
     </Box>
     </>

@@ -1,5 +1,6 @@
 import { Box,Img ,Text,SimpleGrid,Button,Tooltip} from "@chakra-ui/react"
 import { useRouter } from "next/router"
+import { motion } from "framer-motion"
 
 const Home = () => {
   const router = useRouter()
@@ -7,17 +8,34 @@ const Home = () => {
     <>
       <Box bgImage="background.png" bgSize="cover" w="full" h="2300px" >
         <Box classname="gambardantulisan" d="flex" flexDir="row">
+        
           <Box classname="Tulisan">
             <Box ml="100px" pt ="180px" w="500px" classname="header">
-              <Text color="white" fontSize="64" fontWeight="Bold">Asisten Guru,</Text>
-              <Text color = "white" fontSize="48" fontWeight="Bold">Teman Terbaik Guru</Text>
+              
+               <Text color="white" fontSize="64" fontWeight="Bold">Asisten Guru,</Text>
+                <Text color = "white" fontSize="48" fontWeight="Bold">Teman Terbaik Guru</Text>
+              
             </Box>
 
             <Box w="500px" mt="20px" ml="100px">
               <Text color = "white" fontSize="18">Asgur.id membantu guru-guru di Indonesia untuk meningkatkan kualitas bahan ajar mengajar</Text>
             </Box>
           </Box>
+          <motion.div initial="hidden" animate="visible" variants={{
+            hidden: {
+              scale: .8,
+              opacity: 0
+            },
+            visible:{
+              scale: 1,
+              opacity: 1,
+              transition:{
+                delay:.4
+              }
+              },
+            }}>
           <Img src="/illustration.png" pt="180px" ml="120px"/>
+          </motion.div>
         </Box>
 
         <Box classname="fitur" d="flex" flexDir="row" >
@@ -31,16 +49,22 @@ const Home = () => {
             rounded="lg"
             color="gray.400"
           >
-            <Box boxShadow="xl" p="6" rounded="md" bg="white" onClick={() => router.push('/cariasisten')}>
+            <Tooltip hasArrow label="Cari asisten" bg="#1B7AD0">
+            <Box cursor="pointer" boxShadow="xl" p="6" rounded="md" bg="white" onClick={() => router.push('/cariasisten')}>
              Cari Asisten
             </Box>
-            <Box boxShadow="xl" p="6" rounded="md" bg="white" onClick={() => router.push('/buatsoal')}>
+            </Tooltip>
+            <Tooltip hasArrow label="Buat soal secara otomatis" bg="#1B7AD0">
+            <Box cursor="pointer" boxShadow="xl" p="6" rounded="md" bg="white" onClick={() => router.push('/buatsoal')}>
               Pembuat Soal
             </Box>
-            <Box boxShadow="xl" p="6" rounded="md" bg="white" onClick={() => router.push('/comaterial')}>
+            </Tooltip>
+            <Tooltip hasArrow label="Dapatkan kumpulan materi dari guru-guru lain" bg="#1B7AD0">
+            <Box cursor="pointer" boxShadow="xl" p="6" rounded="md" bg="white" onClick={() => router.push('/comaterial')}>
               Bantuan Materi
             </Box>
-            <Box boxShadow="xl" p="6" rounded="md" bg="white">
+            </Tooltip>
+            <Box cursor="pointer" boxShadow="xl" p="6" rounded="md" bg="white">
               COVID-19 Updates
             </Box>
  
@@ -65,7 +89,7 @@ const Home = () => {
 
       </Box>
       
-      <Text color="#1396E6" fontSize="36" fontWeight="Bold" ml="100px" mt="230px"> Kesan Pesan Guru</Text>
+      <Text color="#1396E6" fontSize="36" fontWeight="Bold" ml="100px" mt="150px"> Kesan Pesan Guru</Text>
       <Box classname="KesanPesan"
         padding="30px"
         ml="120px"
@@ -97,8 +121,24 @@ const Home = () => {
             <Text fontStyle="italic" pb="20px">Murid saya senang sekali dengan hasil video animasi. Thanks to Asgur !</Text>
           </Box>
           </SimpleGrid>
+          <Box 
+            textAlign="center"
+          >
+            <Text fontSize="48px" fontWeight="bold" pt="50px">FAQ</Text>
+            <Text fontWeight="Bold" color="#0E7ADD">Bagaimana cara untuk login ?</Text>
+            <Text  pb="20px">Registrasi nama dan email dulu pada halaman registrasi</Text>
+
+            <Text fontWeight="Bold" color="#0E7ADD" >Mengapa saya tidak bisa download lebih dari 3 file ?</Text>
+            <Text  pb="20px">Anda harus bergabung dulu sebagai member Premium</Text>
+
+            <Text fontWeight="Bold" color="#0E7ADD" >Bagaimana mencari materi sesuai kelas atau pelajaran ? </Text>
+            <Text  pb="40px">Bisa menggunakan filter yang disediakan pada sidebar di halaman Bantuan Materi</Text>
+
+            <Text fontStyle="bold" fontSize="14px" pb="20px">Untuk kontak lebih lanjut, silahkan hubungi kami melalui E-mail kami : asgur@gmail.com </Text>
+          </Box>
       </Box>
       </Box>
+      
     </>
   )
 }
