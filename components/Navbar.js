@@ -30,7 +30,7 @@ export default function Navbar(){
           <Text cursor="pointer" onClick={() => router.push('/')}>Home</Text>
           <Text cursor="pointer" onClick={() => router.push('/comaterial')}>Bantuan Materi</Text>
           <Text cursor="pointer" onClick={() => router.push('/buatsoal')}>Buat Soal</Text>
-          <Text cursor="pointer" onClick={() => router.push('/FormTest')}>Cari Asisten</Text>
+          <Text cursor="pointer" onClick={() => router.push('/cariasisten')}>Cari Asisten</Text>
         </Box>
         {!user && <Button mr="50px" colorScheme="blue" onClick={login} className="btn">Daftar/Masuk</Button>}
         {user && <Text fontSize="18px">{user.email}</Text>}
