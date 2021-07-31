@@ -9,7 +9,10 @@ import {
   Input,
   Select,
 } from "@chakra-ui/react";
+main
 import Navbar from "../components/Navbar";
+
+ main
 import {
   FormControl,
   FormLabel,
@@ -22,6 +25,7 @@ import styled from "styled-components";
 import { useState } from "react";
 
 const func = () => {
+ main
   return (
     <div >
        you&apos;re free
